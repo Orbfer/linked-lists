@@ -136,7 +136,27 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.css */ \"./src/styles/styles.css\");\n/* harmony import */ var animate_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! animate.css */ \"./node_modules/animate.css/animate.css\");\n\r\n\r\n\n\n//# sourceURL=webpack://linked-lists/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.css */ \"./src/styles/styles.css\");\n/* harmony import */ var animate_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! animate.css */ \"./node_modules/animate.css/animate.css\");\n/* harmony import */ var _scripts_linkedLists__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/linkedLists */ \"./src/scripts/linkedLists.js\");\n\r\n\r\n\r\n\n\n//# sourceURL=webpack://linked-lists/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/linkedLists.js":
+/*!************************************!*\
+  !*** ./src/scripts/linkedLists.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   LinkedList: () => (/* binding */ LinkedList)\n/* harmony export */ });\n/* harmony import */ var _node__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node */ \"./src/scripts/node.js\");\n\r\nclass LinkedList {\r\n  constructor() {\r\n    this.headNode = null;\r\n    this.size = 0;\r\n  }\r\n  append(value) {\r\n    const newNode = new _node__WEBPACK_IMPORTED_MODULE_0__.Node(value);\r\n    if (!this.headNode) {\r\n      this.headNode = newNode;\r\n    } else {\r\n      let current = this.headNode;\r\n      while (current.nextNode) {\r\n        current = current.nextNode;\r\n      }\r\n      current.nextNode = newNode;\r\n    }\r\n    this.size++;\r\n  }\r\n  prepend(value) {\r\n    const newNode = new _node__WEBPACK_IMPORTED_MODULE_0__.Node(value, this.headNode);\r\n    this.headNode = newNode;\r\n    this.size++;\r\n  }\r\n  getSize() {\r\n    return this.size;\r\n  }\r\n  getHead() {\r\n    return this.headNode;\r\n  }\r\n  getTail() {\r\n    let current = this.headNode;\r\n    if (!current) {\r\n      return null;\r\n    }\r\n    while (current.nextNode) {\r\n      current = current.nextNode;\r\n    }\r\n    return current;\r\n  }\r\n  at(index) {\r\n    if (index < 0 || index >= this.size) return null;\r\n    let current = this.headNode;\r\n    for (let i = 0; i < index; i++) {\r\n      current = current.nextNode;\r\n    }\r\n    return current;\r\n  }\r\n  pop() {\r\n    if (!this.headNode) return null;\r\n    if (this.size === 1) {\r\n      this.headNode = null;\r\n    } else {\r\n      let current = this.headNode;\r\n      while (current.nextNode.nextNode) {\r\n        current = current.nextNode;\r\n      }\r\n      current.nextNode = null;\r\n    }\r\n    this.size--;\r\n  }\r\n  contains(value) {\r\n    let current = this.headNode;\r\n    while (current) {\r\n      if (current.value === value) return true;\r\n      current = current.nextNode;\r\n    }\r\n    return false;\r\n  }\r\n  find(value) {\r\n    let current = this.headNode;\r\n    let index = 0;\r\n    while (current) {\r\n      if (current.value === value) return index;\r\n      else {\r\n        current = current.nextNode;\r\n        index++;\r\n      }\r\n    }\r\n    return null;\r\n  }\r\n  toString() {\r\n    let current = this.headNode;\r\n    let str = \"\";\r\n    while (current) {\r\n      str += `(${current.value}) ->`;\r\n      current = current.nextNode;\r\n    }\r\n    str += \"null\";\r\n    return str;\r\n  }\r\n  insertAt(value, index) {\r\n    if (index < 0 || index > this.size) return null;\r\n    if (index === 0) {\r\n      this.prepend(value);\r\n    } else {\r\n      const newNode = new _node__WEBPACK_IMPORTED_MODULE_0__.Node(value);\r\n      let current = this.headNode;\r\n      for (let i = 0; i < index - 1; i++) {\r\n        current = current.nextNode;\r\n      }\r\n      newNode.nextNode = current.nextNode;\r\n      current.nextNode = newNode;\r\n      this.size++;\r\n    }\r\n  }\r\n  removeAt(index) {\r\n    if (index < 0 || index >= this.size) return null;\r\n    if (index === 0) {\r\n      this.headNode = this.headNode.nextNode;\r\n    } else {\r\n      let current = this.headNode;\r\n      for (let i = 0; i < index - 1; i++) {\r\n        current = current.nextNode;\r\n      }\r\n      current.nextNode = current.nextNode.nextNode;\r\n    }\r\n    this.size--;\r\n  }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://linked-lists/./src/scripts/linkedLists.js?");
+
+/***/ }),
+
+/***/ "./src/scripts/node.js":
+/*!*****************************!*\
+  !*** ./src/scripts/node.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Node: () => (/* binding */ Node)\n/* harmony export */ });\nclass Node {\r\n  constructor(value = null, nextNode = null) {\r\n    this.value = value;\r\n    this.nextNode = nextNode;\r\n  }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://linked-lists/./src/scripts/node.js?");
 
 /***/ })
 

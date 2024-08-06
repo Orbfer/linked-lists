@@ -1,7 +1,7 @@
 {
-  "name": "template",
+  "name": "linked-lists",
   "version": "1.0.0",
-  "description": "A template repo for webpack projects.",
+  "description": "Linked Lists project.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
